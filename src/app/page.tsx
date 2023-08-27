@@ -1,4 +1,5 @@
-import {Box, Container, Paper} from '@mui/material'
+import {Container} from '@mui/material'
+
 import AppWithMsal from './app'
 import {getTeamMembers} from './graph-api.server'
 

@@ -6,15 +6,16 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 
 import * as React from 'react'
+
 import createCache from '@emotion/cache'
-import {useServerInsertedHTML} from 'next/navigation'
 import {CacheProvider} from '@emotion/react'
+import {useMediaQuery} from '@mui/material'
+import CssBaseline from '@mui/material/CssBaseline'
 import {
   ThemeProvider as MuiThemeProvider,
   createTheme,
 } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import {useMediaQuery} from '@mui/material'
+import {useServerInsertedHTML} from 'next/navigation'
 
 // This implementation is from emotion-js
 // https://github.com/emotion-js/emotion/issues/2928#issuecomment-1319747902

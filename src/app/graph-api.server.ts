@@ -1,9 +1,7 @@
 import {ClientSecretCredential} from '@azure/identity'
-import {TokenCredentialAuthenticationProvider} from '@microsoft/microsoft-graph-client/authProviders/azureTokenCredentials'
 import {Client} from '@microsoft/microsoft-graph-client'
+import {TokenCredentialAuthenticationProvider} from '@microsoft/microsoft-graph-client/authProviders/azureTokenCredentials'
 import {ConversationMember} from '@microsoft/microsoft-graph-types'
-
-console.log(process.env)
 
 const credential = new ClientSecretCredential(
   process.env.NEXT_PUBLIC_AZURE_TENANT_ID!,

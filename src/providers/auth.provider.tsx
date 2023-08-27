@@ -1,7 +1,7 @@
 'use client'
 
-import {MsalProvider} from '@azure/msal-react'
 import {PublicClientApplication} from '@azure/msal-browser'
+import {MsalProvider} from '@azure/msal-react'
 
 const pca = new PublicClientApplication({
   auth: {
