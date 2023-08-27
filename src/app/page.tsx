@@ -1,3 +1,4 @@
+import {Box, Container, Paper} from '@mui/material'
 import AppWithMsal from './app'
 import {getTeamMembers} from './graph-api.server'
 
@@ -5,7 +6,7 @@ export default async function Home() {
   const users = await getTeamMembers()
 
   return (
-    <main>
+    <Container component="main">
       <AppWithMsal />
       <ul>
         {users.map(user => (
@@ -14,6 +15,6 @@ export default async function Home() {
           </li>
         ))}
       </ul>
-    </main>
+    </Container>
   )
 }

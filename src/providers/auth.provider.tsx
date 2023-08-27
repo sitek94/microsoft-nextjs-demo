@@ -11,6 +11,6 @@ const pca = new PublicClientApplication({
   },
 })
 
-export default function Providers({children}: {children: React.ReactNode}) {
+export default function AuthProvider({children}: {children: React.ReactNode}) {
   return <MsalProvider instance={pca}>{children}</MsalProvider>
 }
