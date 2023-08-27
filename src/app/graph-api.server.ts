@@ -1,16 +1,16 @@
-import {NextRequest, NextResponse} from 'next/server'
-
 import {ClientSecretCredential} from '@azure/identity'
 import {TokenCredentialAuthenticationProvider} from '@microsoft/microsoft-graph-client/authProviders/azureTokenCredentials'
 import {Client} from '@microsoft/microsoft-graph-client'
+import {ConversationMember} from '@microsoft/microsoft-graph-types'
+
+console.log(process.env)
 
 const credential = new ClientSecretCredential(
-  'ddb7d66c-241c-488d-866b-422a9092135e',
-  'cc37e97e-6020-4dff-8fcf-08e6768c2469',
-  'o0I8Q~hPoUlJz3DqU0AYF_NBgJdj-_pnGwZP3awQ',
+  process.env.NEXT_PUBLIC_AZURE_TENANT_ID!,
+  process.env.NEXT_PUBLIC_AZURE_CLIENT_ID!,
+  process.env.AZURE_CLIENT_SECRET!,
 )
 
-// @microsoft/microsoft-graph-client/authProviders/azureTokenCredentials
 const authProvider = new TokenCredentialAuthenticationProvider(credential, {
   // The client credentials flow requires that you request the
   // /.default scope, and pre-configure your permissions on the
@@ -19,10 +19,14 @@ const authProvider = new TokenCredentialAuthenticationProvider(credential, {
   scopes: ['https://graph.microsoft.com/.default'],
 })
 
-const graphClient = Client.initWithMiddleware({authProvider: authProvider})
+const graphClient = Client.initWithMiddleware({authProvider})
 
-export async function GET() {
-  const users = await graphClient.api('/users').get()
+export async function getTeamMembers(): Promise<ConversationMember[]> {
+  const response = await graphClient
+    .api(`/teams/${process.env.TEAM_ID}/members`)
+    .get()
 
-  return NextResponse.json(users)
+  const users: ConversationMember[] = response.value
+
+  return users
 }
