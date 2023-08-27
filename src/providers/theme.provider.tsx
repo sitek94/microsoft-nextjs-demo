@@ -34,8 +34,18 @@ export default function ThemeProvider({children}: {children: React.ReactNode}) {
         palette: {
           mode: themeMode,
         },
+        components: {
+          // Make scrollbar color match theme, because is not always applied
+          MuiCssBaseline: {
+            styleOverrides: {
+              ':root': {
+                'color-scheme': prefersDarkMode ? 'dark' : 'light',
+              },
+            },
+          },
+        },
       }),
-    [themeMode],
+    [themeMode, prefersDarkMode],
   )
 
   useServerInsertedHTML(() => {

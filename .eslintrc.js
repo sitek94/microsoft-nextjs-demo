@@ -33,6 +33,7 @@ module.exports = {
             react: 'react',
           },
         },
+        'internal-pattern': ['@/components/**', '@/providers/**', '@/lib/**'],
         'newlines-between': 'always',
         'read-tsconfig': true,
       },
